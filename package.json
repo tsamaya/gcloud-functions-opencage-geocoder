@@ -9,9 +9,9 @@
   "author": "serverless.com",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^5.0.1",
-    "opencage-api-client": "^0.1.1",
-    "serverless-google-cloudfunctions": "^1.1.0"
+    "dotenv": "^6.0.0",
+    "opencage-api-client": "^0.3.0",
+    "serverless-google-cloudfunctions": "^2.0.0"
   },
   "devDependencies": {
     "serverless-env-generator": "^1.1.2"
