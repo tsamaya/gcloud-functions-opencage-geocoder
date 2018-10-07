@@ -2,10 +2,12 @@ service: opencage-geocoder
 
 provider:
   name: google
-  runtime: nodejs
-  project: ocd-315303
+  runtime: nodejs8
+  project: opencage-123456
+  region: us-central1
+
   # the path to the credentials file needs to be absolute
-  credentials: ~/.gcloud/ocd-315303.json
+  credentials: ~/.gcloud/keyfile.json
 
 plugins:
   - serverless-google-cloudfunctions
@@ -28,4 +30,4 @@ functions:
   opencage:
     handler: geocode
     events:
-      - http: path
+      - http: geocode
