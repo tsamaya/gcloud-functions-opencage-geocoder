@@ -1,19 +1,36 @@
 {
-  "name": "google-nodejs",
+  "name": "gcloudf-opencage-geocoder",
   "version": "0.1.0",
-  "description": "",
+  "description": "Google Cloud Function wrapping Opencage Data Geocoder",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Warning: no test specified\" && exit 0"
   },
-  "author": "serverless.com",
+  "author": "Arnaud Ferrand",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsamaya/gcloud-functions-opencage-geocodergit"
+  },
+  "keywords": [
+    "geocoder",
+    "api",
+    "opencage",
+    "opencagedata",
+    "serverless",
+    "google",
+    "cloud",
+    "functions",
+    "faas"
+  ],
   "dependencies": {
     "dotenv": "^6.0.0",
-    "opencage-api-client": "^0.3.0",
-    "serverless-google-cloudfunctions": "^2.0.0"
+    "opencage-api-client": "^0.3.0"
   },
   "devDependencies": {
+    "prettier": "^1.14.3",
+    "serverless": "^1.32.0",
+    "serverless-google-cloudfunctions": "^2.0.0",
     "serverless-env-generator": "^1.1.2"
   }
 }
