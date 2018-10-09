@@ -258,7 +258,27 @@ opencage
 
 ### test
 
+- geocode `Picadilly Circus London`
 ```
 $ curl --request GET \
   --url 'https://us-central1-opencage-123456.cloudfunctions.net/geocode?q=Picadilly%20Circus%20London'
 ```
+
+
+- reverse geocode `-22.6792, 14.5272`
+```
+$ curl --request GET \
+  --url 'https://us-central1-opencage-123456.cloudfunctions.net/geocode?q=-22.6792%2C+14.527'
+```
+
+### The end
+
+I hope you enjoyed this tutorial. Feel free to reach me with whatever channel suits you for comment, issue, or coffee!
+
+## Resources
+- Serverless Google Cloud Functions [Guide](https://serverless.com/framework/docs/providers/google/guide/)
+
+## Licensing
+Licensed under the MIT License
+
+A copy of the license is available in the repository's [LICENSE](LICENSE.md) file.
