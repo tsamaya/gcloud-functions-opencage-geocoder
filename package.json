@@ -1,10 +1,12 @@
 {
   "name": "gcloudf-opencage-geocoder",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Google Cloud Function wrapping Opencage Data Geocoder",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Warning: no test specified\" && exit 0"
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "jest --coverage"
   },
   "author": "Arnaud Ferrand",
   "license": "MIT",
@@ -24,13 +26,20 @@
     "faas"
   ],
   "dependencies": {
-    "dotenv": "^6.0.0",
+    "dotenv": "^6.1.0",
     "opencage-api-client": "^0.3.0"
   },
   "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.24.1",
+    "eslint-plugin-prettier": "^3.0.0",
+    "jest": "^23.6.0",
     "prettier": "^1.14.3",
     "serverless": "^1.32.0",
-    "serverless-google-cloudfunctions": "^2.0.0",
-    "serverless-env-generator": "^1.1.2"
+    "serverless-env-generator": "^1.1.2",
+    "serverless-google-cloudfunctions": "^2.0.0"
   }
 }
