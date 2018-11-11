@@ -105,14 +105,31 @@ describe('OpenCage Lib suite', () => {
       });
     });
   });
+
   describe('Mocked Tests', () => {
-    test('reverse geocode `Brandenburg Gate`', async done => {
+    test('geocode `Brandenburg Gate`', async done => {
       const request = {
         query: { q: 'Brandenburg Gate' },
       };
 
       try {
         await opencage.geocode(request, response);
+        // console.dir(response.body);
+        expect(response.body).toBeTruthy();
+      } catch (err) {
+        expect(false).toBeTruthy();
+      } finally {
+        done();
+      }
+    });
+    test('reverse geocode `Brandenburg Gate`', async done => {
+      const request = {
+        query: { q: '52.5162767 13.3777025' },
+      };
+
+      try {
+        await opencage.geocode(request, response);
+        // console.dir(response.body);
         expect(response.body).toBeTruthy();
       } catch (err) {
         expect(false).toBeTruthy();
