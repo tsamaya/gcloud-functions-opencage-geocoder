@@ -78,25 +78,41 @@ describe('OpenCage Lib suite', () => {
     });
 
     describe('#Environment', () => {
-      let backup;
+      describe('no env var', () => {
+        let backup;
 
-      beforeAll(() => {
-        backup = process.env.OCD_API_KEY;
-        delete process.env.OCD_API_KEY;
+        beforeAll(() => {
+          backup = process.env.OCD_API_KEY;
+          delete process.env.OCD_API_KEY;
+        });
+
+        afterAll(() => {
+          process.env.OCD_API_KEY = backup;
+        });
+
+        test('no env var', async done => {
+          const request = {
+            query: { q: 'Brandenburg Gate' },
+          };
+
+          try {
+            await opencage.geocode(request, response);
+            expect(response.body).toEqual(opencage.MISSING_API_KEY);
+          } catch (err) {
+            expect(false).toBeTruthy();
+          } finally {
+            done();
+          }
+        });
       });
-
-      afterAll(() => {
-        process.env.OCD_API_KEY = backup;
-      });
-
-      test('no env var', async done => {
+      test('do not override key from input', async done => {
         const request = {
-          query: { q: 'Brandenburg Gate' },
+          query: { q: 'Brandenburg Gate', key: '1234567890' },
         };
-
         try {
           await opencage.geocode(request, response);
-          expect(response.body).toEqual(opencage.MISSING_API_KEY);
+          // console.dir(response.body);
+          expect(response.body).toBeTruthy();
         } catch (err) {
           expect(false).toBeTruthy();
         } finally {
