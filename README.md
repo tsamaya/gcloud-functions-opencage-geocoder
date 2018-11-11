@@ -8,23 +8,26 @@ Why a function as a service to wrap a REST API? You may don't want to expose you
 
 ## Tutorial
 
-In this tutorial we will be using the serverless framework from  [serverless.com](https://serverless.com/).
+In this tutorial we will be using the serverless framework from [serverless.com](https://serverless.com/).
 
 We will first need a Google account to activate the Google Cloud Plateform.
 
 ### Prerequisites
+
 - node, npm or yarn
 
 - serverless: for convenience install it globally:
 
-    $ npm install -g serverless
+  $ npm install -g serverless
 
 Assuming serverless has been setup globally, the sls and serverless commands are available.
 
 ### Google - Credentials
+
 The Serverless Framework needs access to account credentials for your Google Cloud account so that it can create and manage resources on your behalf.
 
 #### Create a Google Cloud Account
+
 We need a Billing Account with a credit card attached to use Google Cloud Functions. Here's how to create one:
 
 - [Create](https://console.cloud.google.com/billing/create) the account.
@@ -34,6 +37,7 @@ We need a Billing Account with a credit card attached to use Google Cloud Functi
 If necessary, a more detailed guide on creating a Billing Account can be found [here](https://cloud.google.com/billing/docs/how-to/manage-billing-account?hl=en&visit_id=636744942214468658-3501342868&rd=1).
 
 #### Create a new Google Cloud Project
+
 A Google Cloud Project is required to use Google Cloud Functions. Here's how to create one:
 
 - Go to the Google Cloud [Console](https://console.cloud.google.com/).
@@ -44,15 +48,18 @@ A Google Cloud Project is required to use Google Cloud Functions. Here's how to 
 - Verify your currently within your new Project by looking at the dropdown next to the search bar. This should mark your new Project as selected.
 
 #### Enable the necessary APIs
+
 You need to enable the following APIs so that Serverless can create the corresponding resources.
 
 Go to the `API dashboard`, select your project and enable the following APIs:
+
 - Google Cloud Functions
 - Google Cloud Deployment Manager
 - Google Cloud Storage
 - Stackdriver Logging
 
 #### Get credentials
+
 You need to create credentials Serverless can use to create resources in your Project.
 
 - Go to the `Google Cloud API Manager` and select `Credentials` on the left.
@@ -64,7 +71,6 @@ You need to create credentials Serverless can use to create resources in your Pr
 - Click on `Create` to create your private key.
 - The so called `keyfile` will be downloaded on your machine.
 - Save the keyfile somewhere secure. I recommend making a folder in your home folder and putting it there; like this, `~/.gcloud/keyfile.json`. You can change the file name from keyfile to anything according to the goolge project name. Just remember the path you saved it to!
-
 
 ### Create a new serverless boilerplate
 
@@ -110,8 +116,8 @@ will output this directory structure
 
     $ npm i -D serverless
 
-
 ### Update the service name in `serverless.yml`
+
 Open up your `serverless.yml` file and update the service name
 
 ```
@@ -119,6 +125,7 @@ service: opencage-geocoder
 ```
 
 ### Update the provider config in `serverless.yml`
+
 Open up your `serverless.yml` file and update the provider section with your Google Cloud Project id and the path to your `keyfile` file. It should look something like this:
 
 ```
@@ -133,6 +140,7 @@ provider:
 Like in the example above, feel free to use node Plateform version 8 instead of 6. Google Cloud funciton are not generally available, here the `region` parameter is set to `us-central1` which point to the only available location while I am writing this tutorial.
 
 ### install dependencies
+
 We will hide OpenCage Geocoder API key and we will set it in an environment file, so we will use the `dotenv` library, then the OpenCage API request will be held by the `opencage-api-client` library
 
 ```
@@ -140,6 +148,7 @@ $ npm i -S opencage-api-client dotenv
 ```
 
 ### serverless helpers
+
 Serverless comes will some useful plugins, We will use the environment generator file plugin
 
 ```
@@ -207,7 +216,6 @@ exports.geocode = (request, response) => {
     response.status(400).send({error: 400, message: err.statusText});
   });
 };
-
 ```
 
 ### edit serverless handler
@@ -221,7 +229,6 @@ functions:
     events:
       - http: geocode
 ```
-
 
 ### deploy
 
@@ -259,13 +266,14 @@ opencage
 ### test
 
 - geocode `Picadilly Circus London`
+
 ```
 $ curl --request GET \
   --url 'https://us-central1-opencage-123456.cloudfunctions.net/geocode?q=Picadilly%20Circus%20London'
 ```
 
-
 - reverse geocode `-22.6792, 14.5272`
+
 ```
 $ curl --request GET \
   --url 'https://us-central1-opencage-123456.cloudfunctions.net/geocode?q=-22.6792%2C+14.527'
@@ -276,9 +284,11 @@ $ curl --request GET \
 I hope you enjoyed this tutorial. Feel free to reach me with whatever channel suits you for comment, issue, or coffee!
 
 ## Resources
+
 - Serverless Google Cloud Functions [Guide](https://serverless.com/framework/docs/providers/google/guide/)
 
 ## Licensing
+
 Licensed under the MIT License
 
 A copy of the license is available in the repository's [LICENSE](LICENSE.md) file.
