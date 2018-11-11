@@ -31,7 +31,9 @@ exports.geocode = (request, response) => {
     return;
   }
   const { query } = request;
-  query.key = process.env.OCD_API_KEY;
+  if (typeof request.query.key === 'undefined') {
+    query.key = process.env.OCD_API_KEY;
+  }
   // console.log('processing');
   opencage
     .geocode(query)
